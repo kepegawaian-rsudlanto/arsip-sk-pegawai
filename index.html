@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal SK Pegawai & Panel Admin (Tema WhatsApp)</title>
+    <title>Portal SK Pegawai</title>
     <!-- Font Awesome Icons & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -525,41 +525,7 @@
             </form>
         </div>
 
-        <!-- ================= 2. PENDAFTARAN MASTER ADMIN 1 ================= -->
-        <div id="view-register-master" class="view-section">
-            <header>
-                <div class="brand">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <div>
-                        <h1>Pendaftaran Master Admin</h1>
-                        <div class="subtitle">Registrasi pengelola utama portal</div>
-                    </div>
-                </div>
-                <button onclick="showView('employee')" class="btn-admin-trigger">
-                    <i class="fa-solid fa-arrow-left"></i> Kembali
-                </button>
-            </header>
-
-            <form onsubmit="registerMaster(event)">
-                <div class="form-group">
-                    <label><i class="fa-solid fa-id-card"></i> NIP Master Admin</label>
-                    <input type="text" id="reg-nip" placeholder="Masukkan NIP Admin" required>
-                </div>
-                <div class="form-group">
-                    <label><i class="fa-solid fa-envelope"></i> Email Master Admin Utama</label>
-                    <input type="email" id="reg-email" placeholder="admin1@domain.com" required>
-                </div>
-                <div class="form-group">
-                    <label><i class="fa-solid fa-key"></i> Buat Kata Sandi Rahasia</label>
-                    <input type="password" id="reg-pass" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn-submit">
-                    <i class="fa-solid fa-lock"></i> Daftar & Kunci Master Admin
-                </button>
-            </form>
-        </div>
-
-        <!-- ================= 3. HALAMAN LOGIN ADMIN ================= -->
+        <!-- ================= 2. HALAMAN LOGIN ADMIN ================= -->
         <div id="view-login" class="view-section">
             <header>
                 <div class="brand">
@@ -592,7 +558,7 @@
             </form>
         </div>
 
-        <!-- ================= 4. HALAMAN LUPA KATA SANDI ================= -->
+        <!-- ================= 3. HALAMAN LUPA KATA SANDI ================= -->
         <div id="view-forgot" class="view-section">
             <header>
                 <div class="brand">
@@ -629,7 +595,7 @@
             </form>
         </div>
 
-        <!-- ================= 5. DASHBOARD PANEL ADMIN ================= -->
+        <!-- ================= 4. DASHBOARD PANEL ADMIN ================= -->
         <div id="view-admin-dashboard" class="view-section">
             <header>
                 <div class="brand">
@@ -946,22 +912,11 @@ function jsonResp(data) {
 
         function updateTopButtonLabel() {
             const btn = document.getElementById('btn-top-action');
-            const masterData = localStorage.getItem('runvilio_master_admin');
-            
-            if (!masterData) {
-                btn.innerHTML = `<i class="fa-solid fa-user-plus"></i> <span>Daftar Master 1</span>`;
-            } else {
-                btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Login Admin</span>`;
-            }
+            btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Login Admin</span>`;
         }
 
         function handleTopAction() {
-            const masterData = localStorage.getItem('runvilio_master_admin');
-            if (!masterData) {
-                showView('register-master');
-            } else {
-                showView('login');
-            }
+            showView('login');
         }
 
         function showView(viewName) {
@@ -1246,20 +1201,6 @@ function jsonResp(data) {
             openModal('modal-preview-pdf');
         }
 
-        function registerMaster(e) {
-            e.preventDefault();
-            const nip = document.getElementById('reg-nip').value;
-            const email = document.getElementById('reg-email').value;
-            const pass = document.getElementById('reg-pass').value;
-
-            const masterObj = { nip: nip, email: email, pass: pass };
-            localStorage.setItem('runvilio_master_admin', JSON.stringify(masterObj));
-
-            showToast('Pendaftaran Master Admin berhasil!', 'success');
-            updateTopButtonLabel();
-            showView('admin-dashboard');
-        }
-
         function loginAdmin(e) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
@@ -1269,7 +1210,11 @@ function jsonResp(data) {
             const extraAdmins = JSON.parse(localStorage.getItem('runvilio_extra_admins') || '[]');
 
             let isValid = false;
-            if (masterData && masterData.email === email && masterData.pass === pass) {
+
+            // Kredensial default universal agar bisa diakses dari HP/perangkat mana saja
+            if (email === "vakildirektura@gmail.com" && pass === "passwordsaya") {
+                isValid = true;
+            } else if (masterData && masterData.email === email && masterData.pass === pass) {
                 isValid = true;
             } else {
                 extraAdmins.forEach(adm => {
@@ -1293,7 +1238,7 @@ function jsonResp(data) {
 
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
 
-            if (!masterData || masterData.email !== email) {
+            if (email !== "vakildirektura@gmail.com" && (!masterData || masterData.email !== email)) {
                 showToast('Email Master tidak cocok dengan sistem!', 'error');
                 return;
             }
@@ -1303,8 +1248,9 @@ function jsonResp(data) {
                 return;
             }
 
-            masterData.pass = newPass;
-            localStorage.setItem('runvilio_master_admin', JSON.stringify(masterData));
+            const updatedMaster = masterData || { nip: 'ADMIN-MASTER', email: email };
+            updatedMaster.pass = newPass;
+            localStorage.setItem('runvilio_master_admin', JSON.stringify(updatedMaster));
 
             showToast('Kata sandi berhasil diperbarui! Silakan login.', 'success');
             showView('login');
@@ -1319,10 +1265,13 @@ function jsonResp(data) {
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
             const extraAdmins = JSON.parse(localStorage.getItem('runvilio_extra_admins') || '[]');
             
+            const masterNip = masterData && masterData.nip ? masterData.nip : 'ADMIN-MASTER';
+            const masterEmail = masterData && masterData.email ? masterData.email : 'vakildirektura@gmail.com';
+
             let tbodyHtml = `<tr>
                 <td>1</td>
-                <td>${masterData && masterData.nip ? masterData.nip : '-'}</td>
-                <td>${masterData ? masterData.email : '-'}</td>
+                <td>${masterNip}</td>
+                <td>${masterEmail}</td>
                 <td><span style="color: var(--wa-green-dark); font-weight: bold;">Master (Admin 1)</span></td>
             </tr>`;
             
