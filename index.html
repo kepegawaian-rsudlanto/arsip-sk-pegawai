@@ -45,7 +45,6 @@
             padding: 20px 10px;
         }
 
-        /* Banner disembunyikan agar tampilan bersih */
         .system-banner {
             display: none !important;
         }
@@ -190,11 +189,9 @@
             cursor: not-allowed;
         }
 
-        /* View Switching */
         .view-section { display: none; }
         .view-section.active { display: block; }
 
-        /* Modal styling */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -244,7 +241,6 @@
 
         .btn-close:hover { color: var(--wa-danger); }
 
-        /* Stats Cards */
         .admin-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -298,7 +294,6 @@
             gap: 10px;
         }
 
-        /* Controls / Search & Filter */
         .table-controls {
             display: flex;
             gap: 10px;
@@ -315,7 +310,6 @@
             width: 150px;
         }
 
-        /* Tables */
         .table-responsive {
             overflow-x: auto;
             border: 1px solid var(--wa-border);
@@ -350,7 +344,6 @@
             background-color: rgba(240, 242, 245, 0.5);
         }
 
-        /* Badges */
         .badge {
             padding: 4px 10px;
             border-radius: 12px;
@@ -364,7 +357,6 @@
         .badge-success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
         .badge-danger { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
 
-        /* Action Buttons */
         .btn-action {
             padding: 5px 10px;
             border-radius: 6px;
@@ -406,7 +398,6 @@
         }
         .back-link:hover { color: var(--wa-text-main); }
 
-        /* Toast Container */
         #toast-container {
             position: fixed;
             bottom: 20px;
@@ -439,7 +430,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Script Info Box */
         .script-box {
             background: #1e1e1e;
             color: #d4d4d4;
@@ -453,7 +443,6 @@
             margin-top: 10px;
         }
 
-        /* Responsive tweaks */
         @media (max-width: 600px) {
             .container { padding: 18px; }
             header { flex-direction: column; align-items: flex-start; }
@@ -465,7 +454,7 @@
 <body>
 
     <div id="system-banner" class="system-banner">
-        <span><i class="fa-solid fa-circle-info"></i> <strong>Sistem Mode:</strong> <span id="mode-text">Lokal (Simulasi Database)</span>. Set URL Google Web App untuk sync online.</span>
+        <span><i class="fa-solid fa-circle-info"></i> <strong>Sistem Mode:</strong> <span id="mode-text">Lokal (Simulasi Database)</span>.</span>
         <button onclick="openConfigModal()"><i class="fa-solid fa-gear"></i> Pengaturan Apps Script</button>
     </div>
 
@@ -774,7 +763,7 @@
         </div>
     </div>
 
-    <!-- Modal Google Apps Script Config & Backend Code -->
+    <!-- Modal Google Apps Script Config -->
     <div id="modal-config" class="modal-overlay">
         <div class="modal-box" style="max-width: 650px;">
             <div class="modal-header">
@@ -785,95 +774,8 @@
             <div class="form-group">
                 <label>URL Web App Google Apps Script</label>
                 <input type="text" id="app-script-url-input" placeholder="https://script.google.com/macros/s/.../exec">
-                <small style="color: var(--wa-text-muted); font-size: 0.75rem;">
-                    Kosongkan jika ingin menggunakan mode simulasi lokal.
-                </small>
             </div>
             <button onclick="saveScriptUrl()" class="btn-submit" style="margin-bottom: 20px;">Simpan Pengaturan URL</button>
-
-            <hr style="border: 0; border-top: 1px solid var(--wa-border); margin: 15px 0;">
-
-            <label> Kode Backend Google Apps Script (Code.gs)</label>
-            <p style="font-size: 0.8rem; color: var(--wa-text-muted);">
-                Salin kode di bawah ini ke editor Apps Script spreadsheet Google Anda:
-            </p>
-            <div class="script-box" id="script-code-text">// Kode Apps Script Backend untuk Google Sheets
-function doGet(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet();
-  
-  // Lookup Pegawai
-  if (e.parameter.nip) {
-    var empSheet = sheet.getSheetByName("Pegawai");
-    if (!empSheet) return jsonResp({status: "error", message: "Sheet Pegawai tidak ditemukan"});
-    var data = empSheet.getDataRange().getValues();
-    for (var i = 1; i < data.length; i++) {
-      if (data[i][0].toString() == e.parameter.nip) {
-        return jsonResp({status: "found", nama: data[i][1], nik: data[i][2]});
-      }
-    }
-    return jsonResp({status: "not_found"});
-  }
-  
-  // Load SK Data
-  if (e.parameter.sheet == "admin_data") {
-    var skSheet = sheet.getSheetByName("Pengumpulan_SK");
-    if (!skSheet) return jsonResp([]);
-    var data = skSheet.getDataRange().getValues();
-    var list = [];
-    for (var j = 1; j < data.length; j++) {
-      list.push({
-        row: j + 1,
-        nip: data[j][0],
-        nik: data[j][1],
-        nama: data[j][2],
-        ruangan: data[j][3],
-        nomor_sk: data[j][4],
-        link_sk: data[j][5],
-        status: data[j][6] || 'Pending'
-      });
-    }
-    return jsonResp(list);
-  }
-
-  // Update Status
-  if (e.parameter.sheet == "update_status") {
-    var skSheet = sheet.getSheetByName("Pengumpulan_SK");
-    var row = parseInt(e.parameter.row);
-    var status = e.parameter.status;
-    skSheet.getRange(row, 7).setValue(status);
-    return jsonResp({status: "success"});
-  }
-}
-
-function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Pengumpulan_SK");
-    if (!sheet) {
-      sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Pengumpulan_SK");
-      sheet.appendRow(["NIP", "NIK", "Nama", "Ruangan", "Nomor SK", "Link SK", "Status"]);
-    }
-    
-    // Save File to Drive
-    var folder = DriveApp.getFoldersByName("Berkas_SK_Pegawai");
-    var targetFolder = folder.hasNext() ? folder.next() : DriveApp.createFolder("Berkas_SK_Pegawai");
-    var blob = Utilities.newBlob(Utilities.base64Decode(data.fileData), data.fileMimeType, "SK_" + data.nip + "_" + data.nomor_sk + ".pdf");
-    var file = targetFolder.createFile(blob);
-    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-    
-    sheet.appendRow([data.nip, data.nik, data.nama, data.ruangan, data.nomor_sk, file.getUrl(), "Pending"]);
-    return jsonResp({status: "success", message: "Berkas SK berhasil dikirim!"});
-  } catch (err) {
-    return jsonResp({status: "error", message: err.toString()});
-  }
-}
-
-function jsonResp(data) {
-  return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
-}</div>
-            <button onclick="copyScriptCode()" class="btn-action btn-preview" style="margin-top: 10px; width: 100%; justify-content: center;">
-                <i class="fa-solid fa-copy"></i> Salin Kode Apps Script
-            </button>
         </div>
     </div>
 
@@ -883,35 +785,45 @@ function jsonResp(data) {
     <script>
         let SCRIPT_URL = localStorage.getItem('runvilio_script_url') || "https://script.google.com/macros/s/AKfycbzQh78djc0oL96VN3Ue9gxDXuWKQHrikDZdl80RO0VctY2Qxksi6HYgFD6p1qegxree/exec"; 
         const SECRET_RESET_TOKEN = "RUNVILIO-MASTER";
+        let isMasterRegisteredOnline = false;
 
-        // Mock Database untuk Mode Simulasi Lokal
         const MOCK_EMPLOYEES = {
             "199201012020011001": { nama: "Budi Santoso, S.Kom", nik: "3201123456780001" },
             "199505052021022002": { nama: "Siti Rahmawati, S.Kep", nik: "3201987654320002" },
             "198811122015031004": { nama: "Dr. Ahmad Rizki", nik: "3201456789120003" }
         };
 
-        let mockSubmissions = JSON.parse(localStorage.getItem('runvilio_mock_submissions')) || [
-            { row: 2, nip: "199201012020011001", nik: "3201123456780001", nama: "Budi Santoso, S.Kom", ruangan: "TI & Kepegawaian", nomor_sk: "SK/2026/001", link_sk: "sample.pdf", status: "Pending" },
-            { row: 3, nip: "199505052021022002", nik: "3201987654320002", nama: "Siti Rahmawati, S.Kep", ruangan: "IGD Utama", nomor_sk: "SK/2026/045", link_sk: "sample.pdf", status: "Diterima" }
-        ];
-
+        let mockSubmissions = JSON.parse(localStorage.getItem('runvilio_mock_submissions')) || [];
         let cachedRowsData = [];
 
         document.addEventListener("DOMContentLoaded", () => {
-            updateTopButtonLabel();
-            checkSystemMode();
+            checkMasterStatusOnline();
             if (document.getElementById('app-script-url-input')) {
                 document.getElementById('app-script-url-input').value = SCRIPT_URL;
             }
         });
 
-        function checkSystemMode() {
-            const banner = document.getElementById('mode-text');
-            if (SCRIPT_URL && SCRIPT_URL.trim() !== "" && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
-                banner.innerText = "Online (Terhubung ke Google Sheets)";
+        // Cek status pendaftaran Master Admin langsung dari Google Sheets
+        function checkMasterStatusOnline() {
+            if (SCRIPT_URL && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
+                fetch(`${SCRIPT_URL}?action=check_master`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.registered) {
+                            isMasterRegisteredOnline = true;
+                            localStorage.setItem('runvilio_master_admin_exists', 'true');
+                        } else {
+                            isMasterRegisteredOnline = false;
+                            localStorage.removeItem('runvilio_master_admin_exists');
+                        }
+                        updateTopButtonLabel();
+                    })
+                    .catch(err => {
+                        console.error('Gagal verifikasi master online:', err);
+                        updateTopButtonLabel();
+                    });
             } else {
-                banner.innerText = "Lokal (Simulasi Database)";
+                updateTopButtonLabel();
             }
         }
 
@@ -936,9 +848,10 @@ function jsonResp(data) {
 
         function updateTopButtonLabel() {
             const btn = document.getElementById('btn-top-action');
-            const masterData = localStorage.getItem('runvilio_master_admin');
+            const masterLocal = localStorage.getItem('runvilio_master_admin');
+            const masterExists = localStorage.getItem('runvilio_master_admin_exists');
             
-            if (!masterData) {
+            if (!masterLocal && !masterExists && !isMasterRegisteredOnline) {
                 btn.innerHTML = `<i class="fa-solid fa-user-plus"></i> <span>Daftar Master 1</span>`;
             } else {
                 btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Login Admin</span>`;
@@ -946,8 +859,10 @@ function jsonResp(data) {
         }
 
         function handleTopAction() {
-            const masterData = localStorage.getItem('runvilio_master_admin');
-            if (!masterData) {
+            const masterLocal = localStorage.getItem('runvilio_master_admin');
+            const masterExists = localStorage.getItem('runvilio_master_admin_exists');
+
+            if (!masterLocal && !masterExists && !isMasterRegisteredOnline) {
                 showView('register-master');
             } else {
                 showView('login');
@@ -1025,7 +940,6 @@ function jsonResp(data) {
             }
             const file = fileInput.files[0];
 
-            // Validasi ukuran file (300 KB - 500 KB)
             const fileSizeKB = file.size / 1024;
             if (fileSizeKB < 300 || fileSizeKB > 500) {
                 showToast(`Ukuran file (${fileSizeKB.toFixed(1)} KB) tidak sesuai! Wajib minimal 300 KB dan maksimal 500 KB.`, 'error');
@@ -1041,6 +955,7 @@ function jsonResp(data) {
                 const base64Data = event.target.result.split(',')[1];
 
                 const payload = {
+                    action: 'submit_sk',
                     nip: nip,
                     nik: nik,
                     nama: nama,
@@ -1070,7 +985,6 @@ function jsonResp(data) {
                         submitBtn.disabled = false;
                     });
                 } else {
-                    // Simpan ke local storage
                     setTimeout(() => {
                         saveMockSubmission(payload, event.target.result);
                         showToast('Berkas SK berhasil dikirim (Simulasi Mode)!', 'success');
@@ -1160,7 +1074,7 @@ function jsonResp(data) {
                 }
 
                 let previewAction = row.link_sk 
-                    ? `<button onclick="previewFile('${row.link_sk}')" class="btn-action btn-preview"><i class="fa-solid fa-eye"></i> Lihat PDF</button>` 
+                    ? `<button onclick="previewFile('${row.link_sk}')" class="btn-action btn-preview"><i class="fa-solid fa-eye"></i> Lihat Berkas</button>` 
                     : '<span style="color: var(--wa-text-muted); font-size: 0.75rem;">Tanpa file</span>';
 
                 html += `
@@ -1228,7 +1142,7 @@ function jsonResp(data) {
 
         function previewFile(url) {
             if (url === 'sample.pdf') {
-                showToast("File contoh simulasi. Unggah berkas asli PDF untuk melihat pratinjau nyata.", "info");
+                showToast("File contoh simulasi.", "info");
                 return;
             }
             const frame = document.getElementById('pdf-frame');
@@ -1241,12 +1155,41 @@ function jsonResp(data) {
             const email = document.getElementById('reg-email').value;
             const pass = document.getElementById('reg-pass').value;
 
-            const masterObj = { email: email, pass: pass };
-            localStorage.setItem('runvilio_master_admin', JSON.stringify(masterObj));
+            const payload = {
+                action: 'register_master',
+                email: email,
+                pass: pass
+            };
 
-            showToast('Pendaftaran Master Admin berhasil!', 'success');
-            updateTopButtonLabel();
-            showView('admin-dashboard');
+            if (SCRIPT_URL && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 'success') {
+                        const masterObj = { email: email, pass: pass };
+                        localStorage.setItem('runvilio_master_admin', JSON.stringify(masterObj));
+                        localStorage.setItem('runvilio_master_admin_exists', 'true');
+                        isMasterRegisteredOnline = true;
+
+                        showToast('Master Admin berhasil didaftarkan & dikunci online!', 'success');
+                        updateTopButtonLabel();
+                        showView('admin-dashboard');
+                    } else {
+                        showToast(res.message || 'Gagal mendaftar Master Admin.', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast('Gagal terhubung ke Google Script. Menggunakan mode lokal.', 'warning');
+                    const masterObj = { email: email, pass: pass };
+                    localStorage.setItem('runvilio_master_admin', JSON.stringify(masterObj));
+                    updateTopButtonLabel();
+                    showView('admin-dashboard');
+                });
+            }
         }
 
         function loginAdmin(e) {
@@ -1254,6 +1197,35 @@ function jsonResp(data) {
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
 
+            if (SCRIPT_URL && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
+                const payload = {
+                    action: 'login',
+                    email: email,
+                    pass: pass
+                };
+
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 'success') {
+                        showToast('Login Berhasil. Selamat Datang Admin!', 'success');
+                        showView('admin-dashboard');
+                    } else {
+                        showToast(res.message || 'Email atau Kata Sandi salah!', 'error');
+                    }
+                })
+                .catch(err => {
+                    fallbackLocalLogin(email, pass);
+                });
+            } else {
+                fallbackLocalLogin(email, pass);
+            }
+        }
+
+        function fallbackLocalLogin(email, pass) {
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
             const extraAdmins = JSON.parse(localStorage.getItem('runvilio_extra_admins') || '[]');
 
@@ -1267,7 +1239,7 @@ function jsonResp(data) {
             }
 
             if (isValid) {
-                showToast('Login Berhasil. Selamat Datang Admin!', 'success');
+                showToast('Login Berhasil (Mode Lokal).', 'success');
                 showView('admin-dashboard');
             } else {
                 showToast('Email atau Kata Sandi salah!', 'error');
@@ -1282,18 +1254,15 @@ function jsonResp(data) {
 
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
 
-            if (!masterData || masterData.email !== email) {
-                showToast('Email Master tidak cocok dengan sistem!', 'error');
-                return;
-            }
-
             if (token !== SECRET_RESET_TOKEN) {
                 showToast('Token Keamanan Pemulihan salah!', 'error');
                 return;
             }
 
-            masterData.pass = newPass;
-            localStorage.setItem('runvilio_master_admin', JSON.stringify(masterData));
+            if (masterData) {
+                masterData.pass = newPass;
+                localStorage.setItem('runvilio_master_admin', JSON.stringify(masterData));
+            }
 
             showToast('Kata sandi berhasil diperbarui! Silakan login.', 'success');
             showView('login');
@@ -1312,7 +1281,7 @@ function jsonResp(data) {
                 document.getElementById('display-master-email').innerText = masterData.email;
             }
 
-            let tbodyHtml = `<tr><td>1</td><td>${masterData ? masterData.email : '-'}</td><td><span style="color: var(--wa-green-dark); font-weight: bold;">Master (Admin 1)</span></td></tr>`;
+            let tbodyHtml = `<tr><td>1</td><td>${masterData ? masterData.email : 'Master Admin'}</td><td><span style="color: var(--wa-green-dark); font-weight: bold;">Master (Admin 1)</span></td></tr>`;
             
             extraAdmins.forEach((adm, index) => {
                 tbodyHtml += `<tr><td>${index + 2}</td><td>${adm.email}</td><td>Staf Admin</td></tr>`;
@@ -1354,19 +1323,9 @@ function jsonResp(data) {
             const val = document.getElementById('app-script-url-input').value.trim();
             SCRIPT_URL = val;
             localStorage.setItem('runvilio_script_url', val);
-            checkSystemMode();
             closeModal('modal-config');
             showToast("URL Pengaturan Apps Script berhasil disimpan!", "success");
-            if (document.getElementById('view-admin-dashboard').classList.contains('active')) {
-                loadAdminDataFromSheet();
-            }
-        }
-
-        function copyScriptCode() {
-            const text = document.getElementById('script-code-text').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("Kode Google Apps Script berhasil disalin!", "success");
-            });
+            checkMasterStatusOnline();
         }
 
         function exportToCSV() {
