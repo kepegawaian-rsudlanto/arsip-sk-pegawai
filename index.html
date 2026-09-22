@@ -45,38 +45,9 @@
             padding: 20px 10px;
         }
 
-        /* Top Notification Bar for Mode Indicator */
+        /* Banner disembunyikan agar tampilan bersih */
         .system-banner {
-            width: 100%;
-            max-width: 850px;
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .system-banner button {
-            background: #856404;
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-
-        .system-banner button:hover {
-            opacity: 0.9;
+            display: none !important;
         }
 
         .container {
@@ -544,7 +515,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label><i class="fa-solid fa-file-pdf"></i> Unggah Berkas SK (Format PDF / Gambar, Maks. 50MB)</label>
+                    <label><i class="fa-solid fa-file-pdf"></i> Unggah Berkas SK (Format PDF / Gambar, Min. 300KB - Maks. 500KB)</label>
                     <input type="file" id="emp-file" accept=".pdf,image/jpeg,image/jpg,image/png" required>
                 </div>
 
@@ -1053,6 +1024,13 @@ function jsonResp(data) {
                 return;
             }
             const file = fileInput.files[0];
+
+            // Validasi ukuran file (300 KB - 500 KB)
+            const fileSizeKB = file.size / 1024;
+            if (fileSizeKB < 300 || fileSizeKB > 500) {
+                showToast(`Ukuran file (${fileSizeKB.toFixed(1)} KB) tidak sesuai! Wajib minimal 300 KB dan maksimal 500 KB.`, 'error');
+                return;
+            }
 
             const submitBtn = document.getElementById('btn-submit-sk');
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sedang Mengirim Berkas...`;
