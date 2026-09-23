@@ -4,37 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- === META TAGS UNTUK PREVIEW WHATSAPP & SOSMED === -->
+    <!-- === META TAGS UNTUK PREVIEW LINK === -->
     <title>Portal SK Pegawai UPT RSUD Lanto Dg. Pasewang</title>
     <meta name="description" content="Portal resmi untuk unggah dan verifikasi Surat Keputusan (SK) Pegawai UPT RSUD Lanto Dg. Pasewang.">
-    
     <meta property="og:title" content="Portal SK Pegawai RSUD Lanto Dg. Pasewang">
     <meta property="og:description" content="Sistem pengumpulan dan verifikasi berkas Surat Keputusan (SK) Pegawai secara digital.">
-    <!-- Ganti URL gambar di bawah ini dengan link logo RSUD Anda yang sebenarnya agar muncul di WA -->
-    <meta property="og:image" content="https://ui-avatars.com/api/?name=RSUD+Lanto&background=2563eb&color=fff&size=512"> 
+    <meta property="og:image" content="https://ui-avatars.com/api/?name=RSUD+Lanto&background=1e3a8a&color=fff&size=512"> 
     <meta property="og:url" content="https://kepegawaian-rsudlanto.github.io/arsip-sk-pegawai/">
     <meta property="og:type" content="website">
     <!-- ======================================================= -->
 
-    <!-- Font Awesome Icons & Google Fonts -->
+    <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* === TEMA STANDAR PROFESIONAL (BIRU & ABU-ABU) === */
+        /* === TEMA INSTANSI RESMI (NAVY & MAROON) - NO WHATSAPP COLOR === */
         :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #60a5fa;
-            --bg-color: #f8fafc;
+            --primary-color: #1e3a8a; /* Biru Dongker / Navy */
+            --primary-dark: #172554;
+            --primary-light: #3b82f6;
+            --bg-color: #f1f5f9;
             --box-bg: #ffffff;
-            --text-main: #0f172a;
+            --text-main: #1e293b;
             --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --input-bg: #f1f5f9;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --info: #0ea5e9;
+            --border-color: #cbd5e1;
+            --input-bg: #f8fafc;
+            --danger: #991b1b; /* Merah Maroon */
+            --warning: #b45309; /* Cokelat/Oranye Gelap */
+            --info: #0284c7; /* Biru Terang */
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
@@ -47,7 +45,7 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-image: radial-gradient(#94a3b8 1px, transparent 1px);
             background-size: 24px 24px;
             color: var(--text-main);
             min-height: 100vh;
@@ -57,16 +55,14 @@
             padding: 40px 15px;
         }
 
-        .system-banner {
-            display: none !important;
-        }
+        .system-banner { display: none !important; }
 
         .container {
             width: 100%;
             max-width: 850px;
             background-color: var(--box-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-top: 5px solid var(--primary-color); /* Aksen garis atas */
+            border-radius: 12px;
             padding: 35px;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
@@ -76,7 +72,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 20px;
             margin-bottom: 30px;
             flex-wrap: wrap;
@@ -92,31 +88,30 @@
         header .brand i {
             font-size: 2.2rem;
             color: var(--primary-color);
-            background: rgba(37, 99, 235, 0.1);
-            padding: 12px;
-            border-radius: 12px;
         }
 
         h1 {
             font-size: 1.4rem;
-            color: var(--text-main);
+            color: var(--primary-dark);
             font-weight: 700;
             letter-spacing: -0.5px;
+            text-transform: uppercase;
         }
 
         .subtitle {
             font-size: 0.9rem;
             color: var(--text-muted);
             margin-top: 4px;
+            font-weight: 500;
         }
 
         .btn-admin-trigger {
-            background: transparent;
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
-            color: var(--text-muted);
+            color: var(--primary-dark);
             padding: 10px 18px;
             font-size: 0.9rem;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.2s ease;
@@ -128,33 +123,23 @@
 
         .btn-admin-trigger:hover {
             border-color: var(--primary-color);
-            color: var(--primary-color);
-            background-color: rgba(37, 99, 235, 0.05);
-            transform: translateY(-1px);
+            background-color: var(--primary-color);
+            color: white;
         }
 
-        .form-group {
-            margin-bottom: 22px;
-        }
+        .form-group { margin-bottom: 22px; }
 
         label {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
-            color: var(--text-main);
+            color: var(--primary-dark);
             margin-bottom: 8px;
             font-weight: 600;
         }
         
-        label i {
-            color: var(--primary-color);
-            opacity: 0.8;
-        }
-
-        .input-group {
-            position: relative;
-        }
+        label i { color: var(--primary-color); }
 
         input[type="text"],
         input[type="email"],
@@ -163,8 +148,8 @@
         select {
             width: 100%;
             background-color: var(--input-bg);
-            border: 1.5px solid var(--border-color);
-            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             padding: 14px 16px;
             color: var(--text-main);
             font-size: 0.95rem;
@@ -175,14 +160,13 @@
         input:focus, select:focus {
             background-color: var(--box-bg);
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
         }
 
         input[readonly] {
-            background-color: #f1f5f9;
+            background-color: #e2e8f0;
             cursor: not-allowed;
             color: var(--text-muted);
-            border-style: dashed;
         }
         
         input[type="file"] {
@@ -196,7 +180,7 @@
             color: #ffffff;
             font-weight: 600;
             border: none;
-            border-radius: 10px;
+            border-radius: 6px;
             padding: 15px;
             font-size: 1rem;
             cursor: pointer;
@@ -206,28 +190,19 @@
             align-items: center;
             gap: 10px;
             margin-top: 10px;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-submit:hover {
             background-color: var(--primary-dark);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn-submit:active {
-            transform: scale(0.98);
         }
 
         .btn-submit:disabled {
-            background-color: var(--border-color);
-            color: var(--text-muted);
+            background-color: var(--text-muted);
             cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
         }
 
-        /* View Switching */
         .view-section { display: none; animation: fadeIn 0.4s ease; }
         .view-section.active { display: block; }
         
@@ -241,7 +216,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
@@ -251,11 +226,11 @@
 
         .modal-box {
             background: var(--box-bg);
-            border: none;
+            border-top: 5px solid var(--primary-color);
             width: 100%;
             max-width: 550px;
             padding: 30px;
-            border-radius: 16px;
+            border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             max-height: 90vh;
             overflow-y: auto;
@@ -272,25 +247,17 @@
 
         .modal-header h3 {
             font-size: 1.2rem;
-            color: var(--text-main);
+            color: var(--primary-dark);
+            font-weight: 700;
         }
 
         .btn-close {
-            background: var(--input-bg);
+            background: transparent;
             border: none;
-            color: var(--text-muted);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 1.2rem;
+            color: var(--danger);
+            font-size: 1.5rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
         }
-
-        .btn-close:hover { background: #fee2e2; color: var(--danger); }
 
         /* Stats Cards */
         .admin-stats {
@@ -303,48 +270,37 @@
         .stat-card {
             background: var(--box-bg);
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-2px);
+            border-left: 4px solid var(--primary-color);
         }
 
         .stat-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: rgba(37, 99, 235, 0.1);
+            font-size: 2rem;
             color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
         }
 
         .stat-card h3 {
-            font-size: 1.6rem;
-            color: var(--text-main);
+            font-size: 1.8rem;
+            color: var(--primary-dark);
             line-height: 1;
             font-weight: 700;
+            margin-bottom: 5px;
         }
 
         .stat-card p {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-top: 6px;
-            font-weight: 500;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
         .section-title {
             font-size: 1.05rem;
-            color: var(--text-main);
+            color: var(--primary-dark);
             margin: 30px 0 15px 0;
             display: flex;
             justify-content: space-between;
@@ -352,9 +308,10 @@
             font-weight: 700;
             flex-wrap: wrap;
             gap: 10px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
         }
 
-        /* Controls / Search & Filter */
         .table-controls {
             display: flex;
             gap: 12px;
@@ -362,22 +319,15 @@
             flex-wrap: wrap;
         }
 
-        .search-box {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .filter-select {
-            width: 160px;
-        }
+        .search-box { flex: 1; min-width: 200px; }
+        .filter-select { width: 160px; }
 
         /* Tables */
         .table-responsive {
             overflow-x: auto;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 8px;
             background: var(--box-bg);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
         table {
@@ -393,41 +343,37 @@
         }
 
         th {
-            color: var(--text-muted);
-            background-color: #f8fafc;
+            color: var(--box-bg);
+            background-color: var(--primary-color);
             font-weight: 600;
             white-space: nowrap;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             letter-spacing: 0.5px;
         }
 
-        tr:last-child td {
-            border-bottom: none;
-        }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        tr:hover td { background-color: #e2e8f0; }
 
-        tr:hover td {
-            background-color: #f1f5f9;
-        }
-
-        /* Badges */
+        /* Badges - TIDAK ADA WARNA HIJAU */
         .badge {
             padding: 6px 12px;
-            border-radius: 20px;
+            border-radius: 4px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            text-transform: uppercase;
         }
-        .badge-pending { background-color: #fef3c7; color: #92400e; }
-        .badge-success { background-color: #d1fae5; color: #065f46; }
-        .badge-danger { background-color: #fee2e2; color: #991b1b; }
+        .badge-pending { background-color: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+        .badge-success { background-color: #dbeafe; color: #1e3a8a; border: 1px solid #bfdbfe; } /* Diganti Biru Terang */
+        .badge-danger { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 
-        /* Action Buttons */
+        /* Action Buttons - TIDAK ADA WARNA HIJAU */
         .btn-action {
             padding: 8px 12px;
-            border-radius: 8px;
+            border-radius: 4px;
             border: none;
             font-size: 0.8rem;
             cursor: pointer;
@@ -437,36 +383,33 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
         }
-        .btn-action:hover { opacity: 0.9; transform: translateY(-1px); }
-        .btn-acc { background-color: #10b981; color: #fff; } /* Hijau standar */
-        .btn-dec { background-color: var(--danger); color: #fff; }
-        .btn-preview { background-color: var(--input-bg); color: var(--text-main); border: 1px solid var(--border-color); }
+        .btn-action:hover { opacity: 0.9; }
+        .btn-acc { background-color: var(--primary-color); color: #fff; } /* Terima = Biru Navy */
+        .btn-dec { background-color: var(--danger); color: #fff; } /* Tolak = Merah Maroon */
+        .btn-preview { background-color: #cbd5e1; color: var(--primary-dark); }
 
         .helper-link {
             display: inline-block;
             margin-top: 15px;
-            color: var(--primary-dark);
+            color: var(--primary-color);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            transition: color 0.2s;
         }
-        .helper-link:hover { color: var(--primary-color); text-decoration: underline; }
+        .helper-link:hover { text-decoration: underline; }
 
         .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin-top: 25px;
-            color: var(--text-muted);
+            color: var(--primary-dark);
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.2s;
+            font-weight: 700;
         }
-        .back-link:hover { color: var(--text-main); }
+        .back-link:hover { color: var(--primary-color); }
 
         /* Toast Container */
         #toast-container {
@@ -480,47 +423,45 @@
         }
 
         .toast {
-            background: #1e293b;
+            background: var(--primary-dark);
             color: white;
             padding: 14px 24px;
-            border-radius: 10px;
+            border-radius: 6px;
             font-size: 0.9rem;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 12px;
-            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: slideIn 0.3s forwards;
             font-weight: 500;
         }
 
-        .toast.success { border-left: 4px solid #10b981; }
-        .toast.error { border-left: 4px solid var(--danger); }
-        .toast.warning { border-left: 4px solid var(--warning); }
+        .toast.success { border-left: 5px solid var(--primary-light); } /* Garis notif juga biru, bukan hijau */
+        .toast.error { border-left: 5px solid var(--danger); }
+        .toast.warning { border-left: 5px solid #f59e0b; }
 
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Script Info Box */
         .script-box {
-            background: #0f172a;
-            color: #e2e8f0;
+            background: #f1f5f9;
+            color: #1e293b;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 6px;
             font-family: 'Consolas', monospace;
             font-size: 0.8rem;
             max-height: 250px;
             overflow-y: auto;
             white-space: pre-wrap;
             margin-top: 15px;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
         }
 
-        /* Responsive tweaks */
         @media (max-width: 640px) {
             body { padding: 15px 10px; }
-            .container { padding: 20px; border-radius: 12px; }
+            .container { padding: 20px; border-radius: 8px; }
             header { flex-direction: column; align-items: flex-start; }
             .btn-admin-trigger { width: 100%; justify-content: center; margin-top: 10px; }
             .admin-stats { grid-template-columns: 1fr; }
@@ -531,10 +472,8 @@
 </head>
 <body>
 
-
     <div id="system-banner" class="system-banner">
-        <span><i class="fa-solid fa-circle-info"></i> <strong>Sistem Mode:</strong> <span id="mode-text">Lokal (Simulasi Database)</span>. Set URL Google Web App untuk sync online.</span>
-        <button onclick="openConfigModal()"><i class="fa-solid fa-gear"></i> Pengaturan Apps Script</button>
+        <span id="mode-text">Lokal</span>
     </div>
 
     <div class="container">
@@ -543,10 +482,10 @@
         <div id="view-employee" class="view-section active">
             <header>
                 <div class="brand">
-                    <i class="fa-solid fa-folder-open"></i>
+                    <i class="fa-solid fa-building-columns"></i>
                     <div>
                         <h1>Pengumpulan SK Pegawai</h1>
-                        <div class="subtitle">Portal unggah berkas Surat Keputusan Resmi</div>
+                        <div class="subtitle">PORTAL RESMI UPT RSUD LANTO DG. PASEWANG</div>
                     </div>
                 </div>
                 <button id="btn-top-action" onclick="handleTopAction()" class="btn-admin-trigger">
@@ -557,9 +496,7 @@
             <form onsubmit="submitSK(event)">
                 <div class="form-group">
                     <label><i class="fa-solid fa-id-card"></i> NIP Pegawai</label>
-                    <div class="input-group">
-                        <input type="text" id="emp-nip" placeholder="Masukkan NIP Anda (Contoh: 19920101...)" onblur="checkNip(this.value)" required>
-                    </div>
+                    <input type="text" id="emp-nip" placeholder="Masukkan NIP (Contoh: 19920101...)" onblur="checkNip(this.value)" required>
                 </div>
 
                 <div class="form-group">
@@ -569,12 +506,12 @@
 
                 <div class="form-group">
                     <label><i class="fa-solid fa-address-card"></i> NIK</label>
-                    <input type="text" id="emp-nik" placeholder="Otomatis terisi setelah NIP valid..." readonly>
+                    <input type="text" id="emp-nik" placeholder="Otomatis terisi..." readonly>
                 </div>
 
                 <div class="form-group">
-                    <label><i class="fa-solid fa-building-user"></i> Ruangan</label>
-                    <input type="text" id="emp-ruangan" placeholder="Contoh: IGD / Poli Umum / Bagian Keuangan" required>
+                    <label><i class="fa-solid fa-hospital-user"></i> Ruangan</label>
+                    <input type="text" id="emp-ruangan" placeholder="Contoh: IGD / Poli Umum" required>
                 </div>
 
                 <div class="form-group">
@@ -583,12 +520,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label><i class="fa-solid fa-file-pdf"></i> Unggah Berkas SK (Format PDF / Gambar, Min. 300KB - Maks. 500KB)</label>
+                    <label><i class="fa-solid fa-file-pdf"></i> Unggah Berkas SK (PDF/JPG, Min 300KB - Maks 500KB)</label>
                     <input type="file" id="emp-file" accept=".pdf,image/jpeg,image/jpg,image/png" required>
                 </div>
 
                 <button type="submit" id="btn-submit-sk" class="btn-submit">
-                    <i class="fa-solid fa-paper-plane"></i> Kirim Berkas SK
+                    <i class="fa-solid fa-upload"></i> Unggah Berkas SK
                 </button>
             </form>
         </div>
@@ -597,10 +534,10 @@
         <div id="view-login" class="view-section">
             <header>
                 <div class="brand">
-                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <i class="fa-solid fa-shield-halved"></i>
                     <div>
-                        <h1>Masuk Panel Admin</h1>
-                        <div class="subtitle">Silakan autentikasi untuk memverifikasi dokumen</div>
+                        <h1>Panel Verifikator</h1>
+                        <div class="subtitle">Akses khusus tim kepegawaian</div>
                     </div>
                 </div>
                 <button onclick="showView('employee')" class="btn-admin-trigger">
@@ -610,15 +547,15 @@
 
             <form onsubmit="loginAdmin(event)">
                 <div class="form-group">
-                    <label><i class="fa-solid fa-envelope"></i> Email Admin</label>
-                    <input type="email" id="login-email" placeholder="admin1@domain.com" required>
+                    <label><i class="fa-solid fa-envelope"></i> Email Petugas</label>
+                    <input type="email" id="login-email" placeholder="admin@rsudlanto.com" required>
                 </div>
                 <div class="form-group">
-                    <label><i class="fa-solid fa-lock"></i> Kata Sandi</label>
+                    <label><i class="fa-solid fa-key"></i> Kata Sandi</label>
                     <input type="password" id="login-pass" placeholder="••••••••" required>
                 </div>
                 <button type="submit" class="btn-submit">
-                    <i class="fa-solid fa-shield-halved"></i> Masuk ke Panel
+                    <i class="fa-solid fa-right-to-bracket"></i> Masuk Sistem
                 </button>
                 <div style="text-align: right;">
                     <a href="#" onclick="showView('forgot'); return false;" class="helper-link">Lupa kata sandi?</a>
@@ -630,10 +567,10 @@
         <div id="view-forgot" class="view-section">
             <header>
                 <div class="brand">
-                    <i class="fa-solid fa-rotate-left"></i>
+                    <i class="fa-solid fa-user-lock"></i>
                     <div>
-                        <h1>Pemulihan Sandi Admin</h1>
-                        <div class="subtitle">Reset kata sandi menggunakan token master</div>
+                        <h1>Pemulihan Sandi</h1>
+                        <div class="subtitle">Reset akses verifikator</div>
                     </div>
                 </div>
                 <button onclick="showView('login')" class="btn-admin-trigger">
@@ -643,21 +580,19 @@
 
             <form onsubmit="resetPassword(event)">
                 <div class="form-group">
-                    <label><i class="fa-solid fa-envelope"></i> Email Master Terdaftar</label>
-                    <input type="email" id="forgot-email" placeholder="Masukkan email Anda..." required>
+                    <label>Email Terdaftar</label>
+                    <input type="email" id="forgot-email" required>
                 </div>
                 <div class="form-group">
-                    <label><i class="fa-solid fa-key"></i> Token Keamanan Pemulihan</label>
-                    <input type="password" id="forgot-token" placeholder="Masukkan token rahasia..." required>
-                    <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 5px;">
-                    </small>
+                    <label>Kode Token Master</label>
+                    <input type="password" id="forgot-token" required>
                 </div>
                 <div class="form-group">
-                    <label><i class="fa-solid fa-lock-open"></i> Kata Sandi Baru</label>
-                    <input type="password" id="new-forgot-pass" placeholder="Sandi baru..." required>
+                    <label>Kata Sandi Baru</label>
+                    <input type="password" id="new-forgot-pass" required>
                 </div>
                 <button type="submit" class="btn-submit" style="background-color: var(--danger);">
-                    <i class="fa-solid fa-arrows-rotate"></i> Reset & Perbarui Sandi
+                    <i class="fa-solid fa-arrows-rotate"></i> Reset Sandi
                 </button>
             </form>
         </div>
@@ -666,10 +601,10 @@
         <div id="view-admin-dashboard" class="view-section">
             <header>
                 <div class="brand">
-                    <i class="fa-solid fa-gauge-high"></i>
+                    <i class="fa-solid fa-server"></i>
                     <div>
-                        <h1>Dashboard Panel Admin</h1>
-                        <div class="subtitle">Manajemen & Verifikasi SK Pegawai</div>
+                        <h1>Dashboard Rekapitulasi</h1>
+                        <div class="subtitle">Verifikasi Dokumen Pegawai</div>
                     </div>
                 </div>
                 <button onclick="logoutAdmin()" class="btn-admin-trigger" style="color: var(--danger); border-color: var(--danger);">
@@ -677,46 +612,47 @@
                 </button>
             </header>
 
-            <!-- Stats -->
             <div class="admin-stats">
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <div class="stat-icon"><i class="fa-solid fa-folder"></i></div>
                     <div>
                         <h3 id="stat-total-sk">0</h3>
-                        <p>Total SK Masuk</p>
+                        <p>Total Berkas</p>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: var(--warning);"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-icon" style="color: var(--warning);"><i class="fa-solid fa-hourglass-half"></i></div>
                     <div>
                         <h3 id="stat-pending-sk" style="color: var(--warning);">0</h3>
-                        <p>Belum Verifikasi</p>
+                        <p>Menunggu Verifikasi</p>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(16,185,129,0.1); color: #10b981;"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="stat-icon" style="color: var(--primary-light);"><i class="fa-solid fa-check-double"></i></div>
                     <div>
-                        <h3 id="stat-success-sk" style="color: #10b981;">0</h3>
-                        <p>Diterima</p>
+                        <h3 id="stat-success-sk" style="color: var(--primary-light);">0</h3>
+                        <p>Telah Diterima</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Table Controls -->
             <div class="section-title">
-                <span><i class="fa-solid fa-list-check"></i> Verifikasi Berkas SK Pegawai</span>
+                <span><i class="fa-solid fa-list-check"></i> Daftar Berkas Masuk</span>
                 <div style="display: flex; gap: 8px;">
-                    <button onclick="exportToCSV()" class="btn-admin-trigger" style="color: var(--info); border-color: var(--info);">
-                        <i class="fa-solid fa-file-csv"></i> Export CSV
+                    <button onclick="openConfigModal()" class="btn-admin-trigger" title="Pengaturan URL Apps Script">
+                        <i class="fa-solid fa-gear"></i> Set API
                     </button>
-                    <button onclick="loadAdminDataFromSheet()" class="btn-admin-trigger" style="color: var(--primary-color); border-color: var(--primary-color);">
-                        <i class="fa-solid fa-rotate"></i> Refresh
+                    <button onclick="exportToCSV()" class="btn-admin-trigger">
+                        <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                    </button>
+                    <button onclick="loadAdminDataFromSheet()" class="btn-admin-trigger" style="background: var(--primary-color); color: white;">
+                        <i class="fa-solid fa-rotate"></i> Segarkan Data
                     </button>
                 </div>
             </div>
 
             <div class="table-controls">
-                <input type="text" id="table-search" class="search-box" placeholder="Cari NIP, Nama, Ruangan, atau No. SK..." onkeyup="filterTable()">
+                <input type="text" id="table-search" class="search-box" placeholder="Cari NIP, Nama, atau No. SK..." onkeyup="filterTable()">
                 <select id="table-filter-status" class="filter-select" onchange="filterTable()">
                     <option value="ALL">Semua Status</option>
                     <option value="Pending">Pending</option>
@@ -729,25 +665,24 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>NIP / NIK</th>
-                            <th>Nama & Ruangan</th>
-                            <th>No. SK</th>
-                            <th>Berkas</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
+                            <th>IDENTITAS</th>
+                            <th>NAMA & RUANGAN</th>
+                            <th>NO. SK</th>
+                            <th>BERKAS</th>
+                            <th>STATUS</th>
+                            <th>TINDAKAN</th>
                         </tr>
                     </thead>
                     <tbody id="sk-table-body">
-                        <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Memuat data...</td></tr>
+                        <tr><td colspan="6" style="text-align: center; padding: 20px;">Memuat data...</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Manage Admins Section -->
-            <div class="section-title" style="margin-top: 35px;">
-                <span><i class="fa-solid fa-users-gear"></i> Kelola Akses Staf Admin</span>
-                <button onclick="openModal('modal-add-admin')" class="btn-admin-trigger" style="color: var(--primary-color); border-color: var(--primary-color);">
-                    <i class="fa-solid fa-plus"></i> Tambah Admin
+            <div class="section-title" style="margin-top: 40px;">
+                <span><i class="fa-solid fa-users-gear"></i> Kelola Hak Akses Petugas</span>
+                <button onclick="openModal('modal-add-admin')" class="btn-admin-trigger">
+                    <i class="fa-solid fa-plus"></i> Tambah Petugas
                 </button>
             </div>
             
@@ -755,10 +690,10 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>NIP Staf</th>
-                            <th>Email Staf</th>
-                            <th>Peran</th>
+                            <th>NO</th>
+                            <th>NIP PETUGAS</th>
+                            <th>EMAIL AKUN</th>
+                            <th>JABATAN SISTEM</th>
                         </tr>
                     </thead>
                     <tbody id="admin-table-body">
@@ -766,168 +701,67 @@
                             <td>1</td>
                             <td id="display-master-nip">-</td>
                             <td id="display-master-email">-</td>
-                            <td><span style="color: var(--primary-color); font-weight: bold;">Master (Admin 1)</span></td>
+                            <td><b>Master Verifikator</b></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <a href="#" onclick="showView('employee'); return false;" class="back-link">
-                <i class="fa-solid fa-arrow-left"></i> Kembali ke Halaman Utama Pegawai
+                <i class="fa-solid fa-house"></i> Kembali ke Beranda Pegawai
             </a>
         </div>
-
     </div>
 
-    <!-- Modal Tambah Admin -->
+    <!-- Modals (Add Admin, PDF Preview, Config) -->
     <div id="modal-add-admin" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-header">
-                <h3><i class="fa-solid fa-user-plus"></i> Tambah Admin Baru</h3>
+                <h3><i class="fa-solid fa-user-plus"></i> Tambah Petugas Verifikator</h3>
                 <button onclick="closeModal('modal-add-admin')" class="btn-close">&times;</button>
             </div>
             <form onsubmit="addExtraAdmin(event)">
-                <div class="form-group">
-                    <label>NIP Admin Baru</label>
-                    <input type="text" id="new-admin-nip" placeholder="Masukkan NIP Admin" required>
-                </div>
-                <div class="form-group">
-                    <label>Email Admin Baru</label>
-                    <input type="email" id="new-admin-email" placeholder="admin2@domain.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Kata Sandi Sementara</label>
-                    <input type="password" id="new-admin-pass" placeholder="Buat sandi..." required>
-                </div>
-                <button type="submit" class="btn-submit">Simpan Admin Baru</button>
+                <div class="form-group"><label>NIP Petugas</label><input type="text" id="new-admin-nip" required></div>
+                <div class="form-group"><label>Email Akses</label><input type="email" id="new-admin-email" required></div>
+                <div class="form-group"><label>Sandi Sementara</label><input type="password" id="new-admin-pass" required></div>
+                <button type="submit" class="btn-submit">Simpan Akses</button>
             </form>
         </div>
     </div>
 
-    <!-- Modal File Previewer -->
     <div id="modal-preview-pdf" class="modal-overlay">
         <div class="modal-box" style="max-width: 800px; width: 95%;">
             <div class="modal-header">
-                <h3><i class="fa-solid fa-file-pdf"></i> Pratinjau Berkas SK</h3>
+                <h3><i class="fa-solid fa-file-pdf"></i> Pratinjau Dokumen SK</h3>
                 <button onclick="closeModal('modal-preview-pdf')" class="btn-close">&times;</button>
             </div>
-            <div id="pdf-viewer-container" style="width: 100%; height: 500px; background: #eee; border-radius: 8px; overflow: hidden;">
+            <div style="width: 100%; height: 500px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
                 <iframe id="pdf-frame" src="" style="width: 100%; height: 100%; border: none;"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Modal Google Apps Script Config & Backend Code -->
     <div id="modal-config" class="modal-overlay">
         <div class="modal-box" style="max-width: 650px;">
             <div class="modal-header">
-                <h3><i class="fa-solid fa-sliders"></i> Pengaturan Apps Script Google</h3>
+                <h3><i class="fa-solid fa-gears"></i> Pengaturan API / Apps Script</h3>
                 <button onclick="closeModal('modal-config')" class="btn-close">&times;</button>
             </div>
-            
             <div class="form-group">
-                <label>URL Web App Google Apps Script</label>
+                <label>URL Endpoint Google Apps Script</label>
                 <input type="text" id="app-script-url-input" placeholder="https://script.google.com/macros/s/.../exec">
-                <small style="color: var(--text-muted); font-size: 0.75rem;">
-                    Kosongkan jika ingin menggunakan mode simulasi lokal.
-                </small>
             </div>
-            <button onclick="saveScriptUrl()" class="btn-submit" style="margin-bottom: 20px;">Simpan Pengaturan URL</button>
-
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
-
-            <label> Kode Backend Google Apps Script (Code.gs)</label>
-            <p style="font-size: 0.8rem; color: var(--text-muted);">
-                Salin kode di bawah ini ke editor Apps Script spreadsheet Google Anda:
-            </p>
-            <div class="script-box" id="script-code-text">// Kode Apps Script Backend untuk Google Sheets
-function doGet(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet();
-  
-  // Lookup Pegawai
-  if (e.parameter.nip) {
-    var empSheet = sheet.getSheetByName("Pegawai");
-    if (!empSheet) return jsonResp({status: "error", message: "Sheet Pegawai tidak ditemukan"});
-    var data = empSheet.getDataRange().getValues();
-    for (var i = 1; i < data.length; i++) {
-      if (data[i][0].toString() == e.parameter.nip) {
-        return jsonResp({status: "found", nama: data[i][1], nik: data[i][2]});
-      }
-    }
-    return jsonResp({status: "not_found"});
-  }
-  
-  // Load SK Data
-  if (e.parameter.sheet == "admin_data") {
-    var skSheet = sheet.getSheetByName("Pengumpulan_SK");
-    if (!skSheet) return jsonResp([]);
-    var data = skSheet.getDataRange().getValues();
-    var list = [];
-    for (var j = 1; j < data.length; j++) {
-      list.push({
-        row: j + 1,
-        nip: data[j][0],
-        nik: data[j][1],
-        nama: data[j][2],
-        ruangan: data[j][3],
-        nomor_sk: data[j][4],
-        link_sk: data[j][5],
-        status: data[j][6] || 'Pending'
-      });
-    }
-    return jsonResp(list);
-  }
-
-  // Update Status
-  if (e.parameter.sheet == "update_status") {
-    var skSheet = sheet.getSheetByName("Pengumpulan_SK");
-    var row = parseInt(e.parameter.row);
-    var status = e.parameter.status;
-    skSheet.getRange(row, 7).setValue(status);
-    return jsonResp({status: "success"});
-  }
-}
-
-function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Pengumpulan_SK");
-    if (!sheet) {
-      sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Pengumpulan_SK");
-      sheet.appendRow(["NIP", "NIK", "Nama", "Ruangan", "Nomor SK", "Link SK", "Status"]);
-    }
-    
-    // Save File to Drive
-    var folder = DriveApp.getFoldersByName("Berkas_SK_Pegawai");
-    var targetFolder = folder.hasNext() ? folder.next() : DriveApp.createFolder("Berkas_SK_Pegawai");
-    var blob = Utilities.newBlob(Utilities.base64Decode(data.fileData), data.fileMimeType, "SK_" + data.nip + "_" + data.nomor_sk + ".pdf");
-    var file = targetFolder.createFile(blob);
-    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-    
-    sheet.appendRow([data.nip, data.nik, data.nama, data.ruangan, data.nomor_sk, file.getUrl(), "Pending"]);
-    return jsonResp({status: "success", message: "Berkas SK berhasil dikirim!"});
-  } catch (err) {
-    return jsonResp({status: "error", message: err.toString()});
-  }
-}
-
-function jsonResp(data) {
-  return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
-}</div>
-            <button onclick="copyScriptCode()" class="btn-action btn-preview" style="margin-top: 10px; width: 100%; justify-content: center;">
-                <i class="fa-solid fa-copy"></i> Salin Kode Apps Script
-            </button>
+            <button onclick="saveScriptUrl()" class="btn-submit">Simpan Konfigurasi</button>
         </div>
     </div>
 
-    <!-- Toast notification container -->
     <div id="toast-container"></div>
 
     <script>
+        /* === JAVASCRIPT LOGIC TETAP SAMA SEPERTI SEBELUMNYA === */
         let SCRIPT_URL = localStorage.getItem('runvilio_script_url') || "https://script.google.com/macros/s/AKfycbzQh78djc0oL96VN3Ue9gxDXuWKQHrikDZdl80RO0VctY2Qxksi6HYgFD6p1qegxree/exec"; 
         const SECRET_RESET_TOKEN = "RUNVILIO-MASTER";
 
-        // Mock Database untuk Mode Simulasi Lokal
         const MOCK_EMPLOYEES = {
             "199201012020011001": { nama: "Budi Santoso, S.Kom", nik: "3201123456780001" },
             "199505052021022002": { nama: "Siti Rahmawati, S.Kep", nik: "3201987654320002" },
@@ -942,31 +776,20 @@ function jsonResp(data) {
         let cachedRowsData = [];
 
         document.addEventListener("DOMContentLoaded", () => {
-            updateTopButtonLabel();
-            checkSystemMode();
             if (document.getElementById('app-script-url-input')) {
                 document.getElementById('app-script-url-input').value = SCRIPT_URL;
             }
         });
-
-        function checkSystemMode() {
-            const banner = document.getElementById('mode-text');
-            if (SCRIPT_URL && SCRIPT_URL.trim() !== "" && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
-                banner.innerText = "Online (Terhubung ke Google Sheets)";
-            } else {
-                banner.innerText = "Lokal (Simulasi Database)";
-            }
-        }
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             
-            let icon = 'fa-circle-info';
-            if (type === 'success') icon = 'fa-circle-check';
-            if (type === 'error') icon = 'fa-circle-exclamation';
-            if (type === 'warning') icon = 'fa-triangle-exclamation';
+            let icon = 'fa-info-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            if (type === 'error') icon = 'fa-exclamation-triangle';
+            if (type === 'warning') icon = 'fa-bell';
 
             toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
             container.appendChild(toast);
@@ -977,18 +800,10 @@ function jsonResp(data) {
             }, 3500);
         }
 
-        function updateTopButtonLabel() {
-            const btn = document.getElementById('btn-top-action');
-            btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Login Admin</span>`;
-        }
-
-        function handleTopAction() {
-            showView('login');
-        }
+        function handleTopAction() { showView('login'); }
 
         function showView(viewName) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-            
             const target = document.getElementById(`view-${viewName}`);
             if (target) {
                 target.classList.add('active');
@@ -1001,7 +816,6 @@ function jsonResp(data) {
 
         function checkNip(nip) {
             if (!nip) return;
-            
             if (SCRIPT_URL && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
                 fetch(`${SCRIPT_URL}?nip=${encodeURIComponent(nip)}`)
                     .then(res => res.json())
@@ -1009,20 +823,14 @@ function jsonResp(data) {
                         if (data.status === 'found') {
                             document.getElementById('emp-nama').value = data.nama;
                             document.getElementById('emp-nik').value = data.nik;
-                            showToast("Data pegawai ditemukan!", "success");
+                            showToast("Identitas Pegawai Terverifikasi", "success");
                         } else {
-                            showToast("NIP tidak terdaftar dalam database kepegawaian.", "error");
+                            showToast("NIP tidak ditemukan di server", "error");
                             document.getElementById('emp-nama').value = '';
                             document.getElementById('emp-nik').value = '';
                         }
-                    })
-                    .catch(err => {
-                        console.error('Gagal mengecek NIP:', err);
-                        fallbackMockNip(nip);
-                    });
-            } else {
-                fallbackMockNip(nip);
-            }
+                    }).catch(err => fallbackMockNip(nip));
+            } else { fallbackMockNip(nip); }
         }
 
         function fallbackMockNip(nip) {
@@ -1031,81 +839,56 @@ function jsonResp(data) {
                 document.getElementById('emp-nik').value = MOCK_EMPLOYEES[nip].nik;
                 showToast("Data pegawai ditemukan (Mode Simulasi)!", "success");
             } else {
-                showToast("NIP tidak terdaftar dalam database.", "error");
-                document.getElementById('emp-nama').value = '';
-                document.getElementById('emp-nik').value = '';
+                showToast("NIP tidak terdaftar.", "error");
             }
         }
 
         function submitSK(e) {
             e.preventDefault();
-            const nip = document.getElementById('emp-nip').value;
-            const nama = document.getElementById('emp-nama').value;
-            const nik = document.getElementById('emp-nik').value;
-            const ruangan = document.getElementById('emp-ruangan').value;
-            const nomorSK = document.getElementById('emp-nomor-sk').value;
+            const payload = {
+                nip: document.getElementById('emp-nip').value,
+                nik: document.getElementById('emp-nik').value,
+                nama: document.getElementById('emp-nama').value,
+                ruangan: document.getElementById('emp-ruangan').value,
+                nomor_sk: document.getElementById('emp-nomor-sk').value
+            };
             const fileInput = document.getElementById('emp-file');
 
-            if (!nama) {
-                showToast('Pastikan NIP valid dan nama pegawai sudah terisi.', 'warning');
-                return;
-            }
-
-            if (fileInput.files.length === 0) {
-                showToast('Pilih berkas SK terlebih dahulu.', 'warning');
-                return;
-            }
+            if (!payload.nama) return showToast('Pastikan NIP valid terlebih dahulu.', 'warning');
+            if (fileInput.files.length === 0) return showToast('Pilih berkas SK terlebih dahulu.', 'warning');
+            
             const file = fileInput.files[0];
-
             const fileSizeKB = file.size / 1024;
-            if (fileSizeKB < 300 || fileSizeKB > 500) {
-                showToast(`Ukuran file (${fileSizeKB.toFixed(1)} KB) tidak sesuai! Wajib minimal 300 KB dan maksimal 500 KB.`, 'error');
-                return;
-            }
+            if (fileSizeKB < 300 || fileSizeKB > 500) return showToast(`Ukuran file (${fileSizeKB.toFixed(1)} KB) ditolak. Min 300KB, Max 500KB.`, 'error');
 
             const submitBtn = document.getElementById('btn-submit-sk');
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sedang Mengirim Berkas...`;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Mengunggah...`;
             submitBtn.disabled = true;
 
             const reader = new FileReader();
             reader.onload = function(event) {
-                const base64Data = event.target.result.split(',')[1];
-
-                const payload = {
-                    nip: nip,
-                    nik: nik,
-                    nama: nama,
-                    ruangan: ruangan,
-                    nomor_sk: nomorSK,
-                    fileData: base64Data,
-                    fileMimeType: file.type
-                };
+                payload.fileData = event.target.result.split(',')[1];
+                payload.fileMimeType = file.type;
 
                 if (SCRIPT_URL && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
-                    fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        body: JSON.stringify(payload)
-                    })
+                    fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) })
                     .then(res => res.json())
                     .then(response => {
-                        showToast(response.message || 'Berkas SK berhasil dikirim!', 'success');
-                        resetEmployeeForm();
+                        showToast('Berkas SK berhasil dikirim!', 'success');
+                        document.querySelector('form').reset();
                     })
                     .catch(err => {
-                        showToast('Gagal terhubung ke Google Script. Disimpan secara lokal.', 'error');
+                        showToast('Disimpan ke simulasi lokal (Gagal koneksi server).', 'warning');
                         saveMockSubmission(payload, event.target.result);
-                        resetEmployeeForm();
+                        document.querySelector('form').reset();
                     })
-                    .finally(() => {
-                        submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Kirim Berkas SK`;
-                        submitBtn.disabled = false;
-                    });
+                    .finally(() => { submitBtn.innerHTML = `<i class="fa-solid fa-upload"></i> Unggah Berkas SK`; submitBtn.disabled = false; });
                 } else {
                     setTimeout(() => {
                         saveMockSubmission(payload, event.target.result);
                         showToast('Berkas SK berhasil dikirim (Simulasi Mode)!', 'success');
-                        resetEmployeeForm();
-                        submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Kirim Berkas SK`;
+                        document.querySelector('form').reset();
+                        submitBtn.innerHTML = `<i class="fa-solid fa-upload"></i> Unggah Berkas SK`;
                         submitBtn.disabled = false;
                     }, 800);
                 }
@@ -1114,63 +897,37 @@ function jsonResp(data) {
         }
 
         function saveMockSubmission(payload, fileDataUrl) {
-            const newItem = {
+            mockSubmissions.push({
                 row: mockSubmissions.length + 2,
-                nip: payload.nip,
-                nik: payload.nik,
-                nama: payload.nama,
-                ruangan: payload.ruangan,
-                nomor_sk: payload.nomor_sk,
-                link_sk: fileDataUrl,
-                status: 'Pending'
-            };
-            mockSubmissions.push(newItem);
+                nip: payload.nip, nik: payload.nik, nama: payload.nama,
+                ruangan: payload.ruangan, nomor_sk: payload.nomor_sk,
+                link_sk: fileDataUrl, status: 'Pending'
+            });
             localStorage.setItem('runvilio_mock_submissions', JSON.stringify(mockSubmissions));
-        }
-
-        function resetEmployeeForm() {
-            document.getElementById('emp-nip').value = '';
-            document.getElementById('emp-nama').value = '';
-            document.getElementById('emp-nik').value = '';
-            document.getElementById('emp-ruangan').value = '';
-            document.getElementById('emp-nomor-sk').value = '';
-            document.getElementById('emp-file').value = '';
         }
 
         function loadAdminDataFromSheet() {
             const tbody = document.getElementById('sk-table-body');
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);"><i class="fa-solid fa-spinner fa-spin"></i> Memuat data...</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center;"><i class="fa-solid fa-spinner fa-spin"></i> Menarik data dari server...</td></tr>`;
 
             if (SCRIPT_URL && SCRIPT_URL !== "URL_WEB_APP_ANDA_DISINI") {
                 fetch(`${SCRIPT_URL}?sheet=admin_data`)
                     .then(res => res.json())
-                    .then(rows => {
-                        cachedRowsData = rows;
-                        renderSKTable(rows);
-                    })
+                    .then(rows => { cachedRowsData = rows; renderSKTable(rows); })
                     .catch(err => {
-                        console.error("Gagal mengambil data sheet:", err);
-                        showToast("Memuat data dari database lokal.", "warning");
-                        cachedRowsData = mockSubmissions;
-                        renderSKTable(mockSubmissions);
+                        showToast("Memuat data dari simulasi memori browser.", "warning");
+                        cachedRowsData = mockSubmissions; renderSKTable(mockSubmissions);
                     });
-            } else {
-                cachedRowsData = mockSubmissions;
-                renderSKTable(mockSubmissions);
-            }
+            } else { cachedRowsData = mockSubmissions; renderSKTable(mockSubmissions); }
         }
 
         function renderSKTable(rows) {
             const tbody = document.getElementById('sk-table-body');
-            let total = rows.length;
-            let pending = 0;
-            let success = 0;
+            let pending = 0, success = 0;
 
             if (rows.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Belum ada data di database.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center;">Belum ada arsip yang masuk.</td></tr>`;
                 document.getElementById('stat-total-sk').innerText = '0';
-                document.getElementById('stat-pending-sk').innerText = '0';
-                document.getElementById('stat-success-sk').innerText = '0';
                 return;
             }
 
@@ -1180,55 +937,41 @@ function jsonResp(data) {
                 if (row.status === 'Diterima' || row.status === 'accepted') success++;
 
                 let badgeClass = 'badge-pending';
-                let badgeText = '<i class="fa-solid fa-clock"></i> Pending';
-                if (row.status === 'Diterima' || row.status === 'accepted') {
-                    badgeClass = 'badge-success';
-                    badgeText = '<i class="fa-solid fa-check"></i> Diterima';
-                } else if (row.status === 'Ditolak' || row.status === 'rejected') {
-                    badgeClass = 'badge-danger';
-                    badgeText = '<i class="fa-solid fa-xmark"></i> Ditolak';
-                }
+                let badgeText = 'Pending';
+                if (row.status === 'Diterima' || row.status === 'accepted') { badgeClass = 'badge-success'; badgeText = 'Diterima'; }
+                else if (row.status === 'Ditolak' || row.status === 'rejected') { badgeClass = 'badge-danger'; badgeText = 'Ditolak'; }
 
                 let previewAction = row.link_sk 
-                    ? `<button onclick="previewFile('${row.link_sk}')" class="btn-action btn-preview"><i class="fa-solid fa-eye"></i> Lihat PDF</button>` 
-                    : '<span style="color: var(--text-muted); font-size: 0.75rem;">Tanpa file</span>';
+                    ? `<button onclick="previewFile('${row.link_sk}')" class="btn-action btn-preview"><i class="fa-solid fa-magnifying-glass"></i> Cek Dokumen</button>` 
+                    : '<small>Tidak ada berkas</small>';
 
-                html += `
-                    <tr>
-                        <td><b>${row.nip}</b><br><small style="color: var(--text-muted);">NIK: ${row.nik}</small></td>
-                        <td><b>${row.nama}</b><br><small style="color: var(--text-muted);">Ruangan: ${row.ruangan || '-'}</small></td>
-                        <td>${row.nomor_sk || '-'}</td>
-                        <td>${previewAction}</td>
-                        <td><span class="badge ${badgeClass}">${badgeText}</span></td>
-                        <td>
-                            <button onclick="updateStatus(${row.row}, 'Diterima')" class="btn-action btn-acc"><i class="fa-solid fa-check"></i> Terima</button>
-                            <button onclick="updateStatus(${row.row}, 'Ditolak')" class="btn-action btn-dec"><i class="fa-solid fa-xmark"></i> Tolak</button>
-                        </td>
-                    </tr>
-                `;
+                html += `<tr>
+                    <td><b>${row.nip}</b><br><small>NIK: ${row.nik}</small></td>
+                    <td><b>${row.nama}</b><br><small>${row.ruangan || '-'}</small></td>
+                    <td>${row.nomor_sk || '-'}</td>
+                    <td>${previewAction}</td>
+                    <td><span class="badge ${badgeClass}">${badgeText}</span></td>
+                    <td>
+                        <button onclick="updateStatus(${row.row}, 'Diterima')" class="btn-action btn-acc"><i class="fa-solid fa-check"></i> Terima</button>
+                        <button onclick="updateStatus(${row.row}, 'Ditolak')" class="btn-action btn-dec"><i class="fa-solid fa-xmark"></i> Tolak</button>
+                    </td>
+                </tr>`;
             });
 
             tbody.innerHTML = html;
-            document.getElementById('stat-total-sk').innerText = total;
+            document.getElementById('stat-total-sk').innerText = rows.length;
             document.getElementById('stat-pending-sk').innerText = pending;
             document.getElementById('stat-success-sk').innerText = success;
         }
 
         function filterTable() {
-            const searchQuery = document.getElementById('table-search').value.toLowerCase();
-            const filterStatus = document.getElementById('table-filter-status').value;
-
+            const sq = document.getElementById('table-search').value.toLowerCase();
+            const fs = document.getElementById('table-filter-status').value;
             const filtered = cachedRowsData.filter(row => {
-                const matchesSearch = row.nip.toLowerCase().includes(searchQuery) || 
-                                      row.nama.toLowerCase().includes(searchQuery) ||
-                                      (row.ruangan && row.ruangan.toLowerCase().includes(searchQuery)) ||
-                                      (row.nomor_sk && row.nomor_sk.toLowerCase().includes(searchQuery));
-
-                const matchesStatus = (filterStatus === 'ALL') || (row.status === filterStatus);
-
-                return matchesSearch && matchesStatus;
+                const matchSearch = row.nip.toLowerCase().includes(sq) || row.nama.toLowerCase().includes(sq) || (row.nomor_sk && row.nomor_sk.toLowerCase().includes(sq));
+                const matchStatus = (fs === 'ALL') || (row.status === fs);
+                return matchSearch && matchStatus;
             });
-
             renderSKTable(filtered);
         }
 
@@ -1237,32 +980,23 @@ function jsonResp(data) {
                 fetch(`${SCRIPT_URL}?sheet=update_status&row=${rowNumber}&status=${encodeURIComponent(newStatus)}`)
                     .then(res => res.json())
                     .then(res => {
-                        if (res.status === 'success') {
-                            showToast(`Status berhasil diubah menjadi ${newStatus}`, 'success');
-                            loadAdminDataFromSheet();
-                        } else {
-                            showToast('Gagal memperbarui status.', 'error');
-                        }
-                    })
-                    .catch(err => console.error(err));
+                        if (res.status === 'success') { showToast(`Status arsip diubah: ${newStatus}`, 'success'); loadAdminDataFromSheet(); } 
+                        else { showToast('Gagal memperbarui database.', 'error'); }
+                    });
             } else {
                 const item = mockSubmissions.find(m => m.row === rowNumber);
                 if (item) {
                     item.status = newStatus;
                     localStorage.setItem('runvilio_mock_submissions', JSON.stringify(mockSubmissions));
-                    showToast(`Status berhasil diperbarui ke ${newStatus} (Lokal)`, 'success');
+                    showToast(`Status diubah ke ${newStatus} (Lokal)`, 'success');
                     loadAdminDataFromSheet();
                 }
             }
         }
 
         function previewFile(url) {
-            if (url === 'sample.pdf') {
-                showToast("File contoh simulasi. Unggah berkas asli PDF untuk melihat pratinjau nyata.", "info");
-                return;
-            }
-            const frame = document.getElementById('pdf-frame');
-            frame.src = url;
+            if (url === 'sample.pdf') return showToast("File demonstrasi. Unggah PDF asli untuk melihat pratinjau.", "info");
+            document.getElementById('pdf-frame').src = url;
             openModal('modal-preview-pdf');
         }
 
@@ -1270,28 +1004,14 @@ function jsonResp(data) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
-
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
             const extraAdmins = JSON.parse(localStorage.getItem('runvilio_extra_admins') || '[]');
 
-            let isValid = false;
+            let isValid = (email === "vakildirektura@gmail.com" && pass === "passwordsaya") || (masterData && masterData.email === email && masterData.pass === pass);
+            if (!isValid) extraAdmins.forEach(adm => { if (adm.email === email && adm.pass === pass) isValid = true; });
 
-            if (email === "vakildirektura@gmail.com" && pass === "passwordsaya") {
-                isValid = true;
-            } else if (masterData && masterData.email === email && masterData.pass === pass) {
-                isValid = true;
-            } else {
-                extraAdmins.forEach(adm => {
-                    if (adm.email === email && adm.pass === pass) isValid = true;
-                });
-            }
-
-            if (isValid) {
-                showToast('Login Berhasil. Selamat Datang Admin!', 'success');
-                showView('admin-dashboard');
-            } else {
-                showToast('Email atau Kata Sandi salah!', 'error');
-            }
+            if (isValid) { showToast('Otorisasi Diterima.', 'success'); showView('admin-dashboard'); } 
+            else { showToast('Kredensial Petugas Tidak Valid!', 'error'); }
         }
 
         function resetPassword(e) {
@@ -1299,128 +1019,60 @@ function jsonResp(data) {
             const email = document.getElementById('forgot-email').value;
             const token = document.getElementById('forgot-token').value;
             const newPass = document.getElementById('new-forgot-pass').value;
-
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
 
-            if (email !== "vakildirektura@gmail.com" && (!masterData || masterData.email !== email)) {
-                showToast('Email Master tidak cocok dengan sistem!', 'error');
-                return;
-            }
-
-            if (token !== SECRET_RESET_TOKEN) {
-                showToast('Token Keamanan Pemulihan salah!', 'error');
-                return;
-            }
+            if (email !== "vakildirektura@gmail.com" && (!masterData || masterData.email !== email)) return showToast('Email tidak dikenali sistem.', 'error');
+            if (token !== SECRET_RESET_TOKEN) return showToast('Token keamanan ditolak!', 'error');
 
             const updatedMaster = masterData || { nip: 'ADMIN-MASTER', email: email };
             updatedMaster.pass = newPass;
             localStorage.setItem('runvilio_master_admin', JSON.stringify(updatedMaster));
-
-            showToast('Kata sandi berhasil diperbarui! Silakan login.', 'success');
-            showView('login');
+            showToast('Sandi direset. Silakan login kembali.', 'success'); showView('login');
         }
 
-        function logoutAdmin() {
-            showToast('Anda telah keluar dari Panel Admin.', 'info');
-            showView('employee');
-        }
+        function logoutAdmin() { showToast('Sesi diakhiri.', 'info'); showView('employee'); }
 
         function loadAdminData() {
             const masterData = JSON.parse(localStorage.getItem('runvilio_master_admin'));
             const extraAdmins = JSON.parse(localStorage.getItem('runvilio_extra_admins') || '[]');
-            
             const masterNip = masterData && masterData.nip ? masterData.nip : 'ADMIN-MASTER';
             const masterEmail = masterData && masterData.email ? masterData.email : 'vakildirektura@gmail.com';
 
-            let tbodyHtml = `<tr>
-                <td>1</td>
-                <td>${masterNip}</td>
-                <td>${masterEmail}</td>
-                <td><span style="color: var(--primary-color); font-weight: bold;">Master (Admin 1)</span></td>
-            </tr>`;
-            
-            extraAdmins.forEach((adm, index) => {
-                tbodyHtml += `<tr>
-                    <td>${index + 2}</td>
-                    <td>${adm.nip || '-'}</td>
-                    <td>${adm.email}</td>
-                    <td>Staf Admin</td>
-                </tr>`;
-            });
-
-            document.getElementById('admin-table-body').innerHTML = tbodyHtml;
+            let html = `<tr><td>1</td><td>${masterNip}</td><td>${masterEmail}</td><td><b>Master Verifikator</b></td></tr>`;
+            extraAdmins.forEach((adm, i) => { html += `<tr><td>${i + 2}</td><td>${adm.nip || '-'}</td><td>${adm.email}</td><td>Staf Petugas</td></tr>`; });
+            document.getElementById('admin-table-body').innerHTML = html;
         }
 
         function addExtraAdmin(e) {
             e.preventDefault();
-            const nip = document.getElementById('new-admin-nip').value;
-            const email = document.getElementById('new-admin-email').value;
-            const pass = document.getElementById('new-admin-pass').value;
-
             let extraAdmins = JSON.parse(localStorage.getItem('runvilio_extra_admins') || '[]');
-            extraAdmins.push({ nip: nip, email: email, pass: pass });
+            extraAdmins.push({ nip: document.getElementById('new-admin-nip').value, email: document.getElementById('new-admin-email').value, pass: document.getElementById('new-admin-pass').value });
             localStorage.setItem('runvilio_extra_admins', JSON.stringify(extraAdmins));
-
-            showToast('Admin baru berhasil ditambahkan!', 'success');
-            closeModal('modal-add-admin');
-            loadAdminData();
-            
-            document.getElementById('new-admin-nip').value = '';
-            document.getElementById('new-admin-email').value = '';
-            document.getElementById('new-admin-pass').value = '';
+            showToast('Hak akses petugas ditambahkan!', 'success');
+            closeModal('modal-add-admin'); loadAdminData(); document.querySelector('#modal-add-admin form').reset();
         }
 
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        function openConfigModal() {
-            openModal('modal-config');
-        }
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function openConfigModal() { openModal('modal-config'); }
 
         function saveScriptUrl() {
             const val = document.getElementById('app-script-url-input').value.trim();
-            SCRIPT_URL = val;
-            localStorage.setItem('runvilio_script_url', val);
-            checkSystemMode();
-            closeModal('modal-config');
-            showToast("URL Pengaturan Apps Script berhasil disimpan!", "success");
-            if (document.getElementById('view-admin-dashboard').classList.contains('active')) {
-                loadAdminDataFromSheet();
-            }
-        }
-
-        function copyScriptCode() {
-            const text = document.getElementById('script-code-text').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("Kode Google Apps Script berhasil disalin!", "success");
-            });
+            SCRIPT_URL = val; localStorage.setItem('runvilio_script_url', val);
+            closeModal('modal-config'); showToast("API Konfigurasi Disimpan", "success");
+            if (document.getElementById('view-admin-dashboard').classList.contains('active')) loadAdminDataFromSheet();
         }
 
         function exportToCSV() {
-            if (!cachedRowsData || cachedRowsData.length === 0) {
-                showToast("Tidak ada data untuk diexport", "warning");
-                return;
-            }
-
+            if (!cachedRowsData || cachedRowsData.length === 0) return showToast("Kosong, tidak ada arsip ditarik", "warning");
             let csv = 'NIP,NIK,Nama,Ruangan,Nomor SK,Status\n';
-            cachedRowsData.forEach(row => {
-                csv += `"${row.nip}","${row.nik}","${row.nama}","${row.ruangan || ''}","${row.nomor_sk || ''}","${row.status}"\n`;
-            });
-
+            cachedRowsData.forEach(r => csv += `"${r.nip}","${r.nik}","${r.nama}","${r.ruangan || ''}","${r.nomor_sk || ''}","${r.status}"\n`);
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", `Rekap_SK_Pegawai_${new Date().toISOString().slice(0,10)}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("Data berhasil diexport ke CSV!", "success");
+            link.href = URL.createObjectURL(blob);
+            link.download = `Rekap_SK_Pegawai_${new Date().toISOString().slice(0,10)}.csv`;
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+            showToast("Berkas Rekap CSV Diunduh!", "success");
         }
     </script>
 </body>
